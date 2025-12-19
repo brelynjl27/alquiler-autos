@@ -1,0 +1,47 @@
+name: CI Alquiler Autos
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  backend:
+    name: Backend - Spring Boot
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Compilar backend
+        working-directory: alquiler-autos-backend
+        run: mvn clean package -DskipTests
+
+  frontend:
+    name: Frontend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Instalar dependencias
+        working-directory: alquiler-autos-frontend
+        run: npm install
+
+      - name: Build frontend
+        working-directory: alquiler-autos-frontend
+        run: npm run build
