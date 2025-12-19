@@ -14,7 +14,7 @@ services:
       - "3307:3306"
 
   backend:
-    build: ./ventas-autos
+    build: ./alquiler-autos-backend
     container_name: backend-ventas
     depends_on:
       - mysql
@@ -26,7 +26,7 @@ services:
       - "8081:8081"
 
   frontend:
-    build: ./ventas-autos-frontend
+    build: ./alquiler-autos-frontend
     container_name: frontend-ventas
     depends_on:
       - backend
