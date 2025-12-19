@@ -1,0 +1,70 @@
+<div class="dashboard-layout">
+  <!-- 🧭 SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <h2>B&R CARS</h2>
+    </div>
+    <nav>
+      <ul>
+        <li routerLink="/dashboard" routerLinkActive="active">
+          <span>🏠</span> Dashboard
+        </li>
+        <li routerLink="/clientes" routerLinkActive="active">
+          <span>👤</span> Clientes
+        </li>
+        <li routerLink="/autos" routerLinkActive="active">
+          <span>🚗</span> Autos
+        </li>
+        <li routerLink="/solicitudes" routerLinkActive="active">
+          <span>📝</span> Solicitudes
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  
+  <div class="main-content">
+    <!-- Topbar -->
+    <header class="topbar">
+      <h1>Panel de Administración — B&R CARS</h1>
+    </header>
+
+    <div *ngIf="loading" class="loading">Cargando resumen...</div>
+
+    <div *ngIf="!loading && summary">
+      <!-- 📌 Tarjetas -->
+      <div class="cards">
+        <div class="card">
+          <h3>Clientes</h3>
+          <div class="big">{{ summary.totalClientes }}</div>
+        </div>
+
+        <div class="card">
+          <h3>Autos (total)</h3>
+          <div class="big">{{ summary.totalAutos }}</div>
+        </div>
+
+        <div class="card">
+          <h3>Solicitudes</h3>
+          <div class="big">{{ summary.totalSolicitudes }}</div>
+        </div>
+      </div>
+
+      
+      <div class="bottom-area">
+        <div class="chart-container">
+          <h4>📈 Solicitudes por mes</h4>
+          <canvas baseChart
+                  [data]="barChartData"
+                  [options]="barChartOptions"
+                  chartType="bar">
+          </canvas>
+        </div>
+
+        <div class="chat-area">
+          <app-chat-ia></app-chat-ia>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

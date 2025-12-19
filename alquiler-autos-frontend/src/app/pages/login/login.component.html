@@ -1,0 +1,186 @@
+<div class="login-container">
+  <h2>B&R CARS</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h1>{{ modoRegistro ? 'Registrar Usuario' : 'Iniciar Sesión' }}</h1>
+
+
+    <div>
+      <input id="username" formControlName="username" placeholder="Nombre del trabajador">
+      <div *ngIf="submitted && loginForm.get('username')?.invalid" class="error">
+        El nombre es obligatorio
+      </div>
+    </div>
+
+    
+    <div>
+      <input id="password" type="password" formControlName="password" placeholder="Contraseña">
+      <div *ngIf="submitted && loginForm.get('password')?.invalid" class="error">
+        La contraseña es obligatoria
+      </div>
+    </div>
+
+    
+    <div>
+      <select id="rol" formControlName="rol">
+        <option value="">Selecciona un rol</option>
+        <option *ngFor="let r of rolesDisponibles" [value]="r">{{ r }}</option>
+      </select>
+      <div *ngIf="submitted && loginForm.get('rol')?.invalid" class="error">
+        El rol es obligatorio
+      </div>
+    </div>
+
+    <button type="submit">
+      {{ modoRegistro ? 'Registrar' : 'Iniciar sesión' }}
+    </button>
+
+   
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+  </form>
+
+  <p class="toggle-link" (click)="toggleModo()">
+    {{ modoRegistro ? '¿Ya tienes cuenta? Inicia sesión' : '¿No tienes cuenta? Regístrate aquí' }}
+  </p>
+</div>
+
+<style>
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.login-container {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+  animation: slideDown 0.6s ease-in-out;
+}
+
+
+.login-container h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 0.5rem;
+}
+
+.login-container h1 {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 1.5rem;
+}
+
+
+.login-container input,
+.login-container select {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.7rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-container input:focus,
+.login-container select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+
+.error {
+  color: #dc2626;
+  font-size: 0.85rem;
+  margin-top: -0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+
+.login-container button {
+  width: 100%;
+  background: #2563eb;
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+  background: #1e40af;
+}
+
+
+.error-message {
+  color: #dc2626;
+  background: #fee2e2;
+  padding: 0.5rem;
+  margin-top: 0.8rem;
+  border-radius: 0.4rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.success-message {
+  color: #16a34a;
+  background: #dcfce7;
+  padding: 0.5rem;
+  margin-top: 0.8rem;
+  border-radius: 0.4rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+
+.toggle-link {
+  text-align: center;
+  margin-top: 1rem;
+  color: #1e3a8a;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.toggle-link:hover {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+</style>

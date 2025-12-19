@@ -1,0 +1,134 @@
+
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.sidebar {
+  width: 220px;
+  background-color: #1f2937;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+}
+
+.sidebar-logo {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav ul li {
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.sidebar nav ul li:hover,
+.sidebar nav ul li.active {
+  background-color: #374151;
+}
+
+.sidebar nav ul li span {
+  font-size: 1.2rem;
+}
+
+
+.main-content {
+  flex: 1;
+  padding: 20px 30px;
+}
+
+.topbar {
+  background-color: #fff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  color: #4b5563;
+}
+
+.card .big {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+
+.bottom-area {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.chart-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chat-area {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-height: 200px;
+}
+
+
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 60px;
+  }
+
+  .sidebar-logo {
+    display: none;
+  }
+
+  .bottom-area {
+    grid-template-columns: 1fr;
+  }
+}

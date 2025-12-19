@@ -1,0 +1,22 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <h3>Asistente Administrativo 🤖</h3>
+    <p>Haz tus consultas sobre clientes, autos o solicitudes</p>
+  </div>
+
+  <div class="chat-body" #chatBody>
+    <div *ngFor="let msg of messages" [ngClass]="msg.from">
+      <div class="bubble">{{ msg.text }}</div>
+    </div>
+  </div>
+
+  <div class="chat-footer">
+    <input
+      type="text"
+      [(ngModel)]="input"
+      (keyup.enter)="send()"
+      placeholder="Escribe tu mensaje aquí..."
+    />
+    <button (click)="send()">Enviar</button>
+  </div>
+</div>

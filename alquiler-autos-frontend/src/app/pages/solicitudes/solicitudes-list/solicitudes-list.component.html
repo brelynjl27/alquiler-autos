@@ -1,0 +1,221 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Lista de Solicitudes de Crédito</h2>
+    <a routerLink="/solicitudes/nuevo" class="btn btn-primary">
+      ➕ Nueva Solicitud
+    </a>
+  </div>
+
+  <table class="table table-striped table-bordered text-center" *ngIf="solicitudes.length > 0; else sinDatos">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Auto</th>
+        <th>Monto</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let solicitud of solicitudes">
+        <td>{{ solicitud.id }}</td>
+        <td>{{ solicitud.cliente?.nombre }} {{ solicitud.cliente?.apellido }}</td>
+        <td>{{ solicitud.auto?.marca }} {{ solicitud.auto?.modelo }}</td>
+        <td>{{ solicitud.monto | currency:'PEN':'symbol':'1.2-2' }}</td>
+        <td>
+          <span
+            [class]="
+              solicitud.estado === 'APROBADA' ? 'badge bg-success' :
+              solicitud.estado === 'RECHAZADA' ? 'badge bg-danger' :
+              'badge bg-secondary'
+            "
+          >
+            {{ solicitud.estado }}
+          </span>
+        </td>
+        <td>
+          <button
+            class="btn btn-sm btn-warning me-2"
+            [routerLink]="['/solicitudes/editar', solicitud.id]"
+          >
+            ✏️ Editar
+          </button>
+          <button
+            class="btn btn-sm btn-danger"
+            (click)="eliminar(solicitud.id)"
+          >
+            🗑️ Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #sinDatos>
+    <div class="alert alert-info text-center">
+      No hay solicitudes registradas.
+    </div>
+  </ng-template>
+</div>
+    
+
+<style>
+
+
+.container {
+  max-width: 1100px;
+  margin: 20px auto;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+
+.btn {
+  display: inline-block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #b02a37;
+  transform: translateY(-1px);
+}
+
+.btn-sm {
+  font-size: 0.85rem;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+
+.table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.table th {
+  background-color: #343a40;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px;
+  text-align: center;
+}
+
+.table td {
+  padding: 12px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.table tr:hover {
+  background-color: #e2e6ea;
+  transition: background-color 0.2s ease;
+}
+
+
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bg-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.bg-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.bg-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+
+.alert {
+  margin-top: 20px;
+  font-size: 1rem;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+
+@media (max-width: 768px) {
+  .table th, .table td {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+
+  .btn, .btn-sm {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+}
+
+
+</style>

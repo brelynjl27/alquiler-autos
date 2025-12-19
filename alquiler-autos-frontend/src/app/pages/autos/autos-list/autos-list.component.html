@@ -1,0 +1,107 @@
+<div class="container">
+  <h2>🚗 Lista de Autos</h2>
+  <a class="btn-nuevo" routerLink="/autos/nuevo">+ Nuevo Auto</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Año</th>
+        <th>Placa</th>
+        <th>Precio</th>
+        <th>Cliente</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let auto of autos">
+        <td>{{ auto.id }}</td>
+        <td>{{ auto.marca }}</td>
+        <td>{{ auto.modelo }}</td>
+        <td>{{ auto.anio }}</td>
+        <td>{{auto.placa}}</td>
+        <td>{{ auto.precio | currency:'USD' }}</td>
+        <td>{{ auto.cliente?.nombre }} {{ auto.cliente?.apellido }}</td>
+        <td>
+          <button class="btn-editar" [routerLink]="['/autos/editar', auto.id]">✏️ Editar</button>
+          <button class="btn-eliminar" (click)="eliminarAuto(auto.id!)">🗑️ Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .container {
+  max-width: 900px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.btn-nuevo {
+  display: inline-block;
+  margin-bottom: 15px;
+  padding: 8px 14px;
+  background: #1976d2;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.btn-nuevo:hover {
+  background: #135ba1;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f5f5f5;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.btn-editar, .btn-eliminar {
+  padding: 6px 10px;
+  margin-right: 4px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-editar {
+  background: #ffc107;
+  color: #333;
+}
+
+.btn-editar:hover {
+  background: #e0a800;
+}
+
+.btn-eliminar {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-eliminar:hover {
+  background: #b02a37;
+}
+
+</style>

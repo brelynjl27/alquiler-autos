@@ -1,0 +1,134 @@
+<div class="clientes-container">
+  <div class="header">
+    <h2>📋 Lista de Clientes</h2>
+    <button class="btn-agregar" (click)="nuevoCliente()">+ Nuevo Cliente</button>
+  </div>
+
+  <div *ngIf="loading" class="loading">Cargando clientes...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <table *ngIf="!loading && clientes.length > 0" class="clientes-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>DNI</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clientes">
+        <td>{{ cliente.id }}</td>
+        <td>{{ cliente.nombre }}</td>
+        <td>{{ cliente.apellido }}</td>
+        <td>{{ cliente.dni }}</td>
+        <td>{{ cliente.telefono || '-' }}</td>
+        <td>{{ cliente.email }}</td>
+        <td>
+          <button class="btn-editar" (click)="editarCliente(cliente.id!)">Editar</button>
+          <button class="btn-eliminar" (click)="eliminarCliente(cliente.id!)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && clientes.length === 0" class="no-data">
+    No hay clientes registrados.
+  </div>
+</div>
+
+<style>
+  .clientes-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  background: #ffffff0f;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  backdrop-filter: blur(5px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #222;
+}
+
+.btn-agregar {
+  background-color: #28a745;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-agregar:hover {
+  background-color: #218838;
+}
+
+.loading, .error, .no-data {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.error {
+  color: #d9534f;
+}
+
+.clientes-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.clientes-table th, .clientes-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.clientes-table th {
+  background-color: #f4f4f4;
+}
+
+.btn-editar {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  margin-right: 0.3rem;
+  cursor: pointer;
+}
+
+.btn-editar:hover {
+  background-color: #0056b3;
+}
+
+.btn-eliminar {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-eliminar:hover {
+  background-color: #c82333;
+}
+
+</style>

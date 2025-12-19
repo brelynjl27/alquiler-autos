@@ -1,0 +1,72 @@
+<header class="header">
+  <nav class="nav-menu">
+    <a routerLink="/dashboard" class="nav-link">Inicio</a>
+ 
+    <a routerLink="/login" class="nav-link login-link">Cerrar Secion</a>
+  </nav>
+</header>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
+
+
+
+<style>
+ 
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(90deg, #002c53, #013f42);
+  padding: 12px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #ddd;
+}
+
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+}
+
+
+.nav-link {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  margin-right: 20px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #4facfe;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.login-link {
+  margin-left: auto;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.login-link:hover {
+  background-color: #fff;
+  color: #4facfe;
+}
+
+
+.main-content {
+  padding: 20px;
+  background-color: #f4f6f8;
+  min-height: calc(100vh - 60px);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+</style>
